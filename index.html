@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Deportiva Jujuy360</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <header class="bg-primary text-white py-4">
+        <div class="container">
+            <h1 class="text-center"><i class="bi bi-trophy"></i> Agenda Deportiva Jujuy360</h1>
+            <p class="text-center mb-0">Todos los eventos deportivos de la provincia de Jujuy</p>
+        </div>
+    </header>
+
+    <main class="container my-4">
+        <!-- Filtros -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <select id="filtroDeporte" class="form-select">
+                    <option value="">Todos los deportes</option>
+                    <option value="futbol">Fútbol</option>
+                    <option value="basquet">Básquet</option>
+                    <option value="running">Running/Atletismo</option>
+                    <option value="motor">Automovilismo/Motociclismo</option>
+                    <option value="padel">Pádel</option>
+                    <option value="otros">Otros</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <select id="filtroCiudad" class="form-select">
+                    <option value="">Todas las ciudades</option>
+                    <option value="san-salvador">San Salvador de Jujuy</option>
+                    <option value="palpala">Palpalá</option>
+                    <option value="tilcara">Tilcara</option>
+                    <option value="humahuaca">Humahuaca</option>
+                    <option value="perico">Perico</option>
+                    <option value="otras">Otras</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <input type="text" id="busqueda" class="form-control" placeholder="Buscar eventos...">
+            </div>
+        </div>
+
+        <!-- Lista de eventos -->
+        <div id="listaEventos" class="row">
+            <!-- Los eventos se cargarán dinámicamente aquí -->
+        </div>
+
+        <!-- Mensaje cuando no hay eventos -->
+        <div id="sinEventos" class="alert alert-info text-center" style="display: none;">
+            <i class="bi bi-info-circle"></i> No se encontraron eventos que coincidan con los filtros seleccionados.
+        </div>
+
+        <!-- Mapa de eventos -->
+        <div class="mt-5">
+            <h2 class="text-center mb-4"><i class="bi bi-geo-alt"></i> Mapa de Eventos</h2>
+            <div id="mapa" style="height: 400px; background: #e9ecef; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                <p class="text-muted">Mapa interactivo de eventos deportivos en Jujuy</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 Jujuy360 - Agenda Deportiva Provincial</p>
+            <p class="mb-0 small">Información actualizada automáticamente desde fuentes oficiales</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
