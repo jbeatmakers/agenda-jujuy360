@@ -1,0 +1,32 @@
+name: Temporary transcript fetch
+
+on:
+  pull_request:
+    paths:
+      - 'TEMP_TRANSCRIPT_TRIGGER'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch public caption transcript
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 5 --retry-all-errors \
+            'https://youtube-transcript.ai/transcript/rhxLNTU_94s.txt?lang=es' \
+            --output TEMP_HERNAN_CRUZ_TRANSCRIPT.md
+          test -s TEMP_HERNAN_CRUZ_TRANSCRIPT.md
+          wc -c TEMP_HERNAN_CRUZ_TRANSCRIPT.md
+
+      - name: Upload transcript artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hernan-cruz-transcript
+          path: TEMP_HERNAN_CRUZ_TRANSCRIPT.md
+          if-no-files-found: error
+          retention-days: 1
