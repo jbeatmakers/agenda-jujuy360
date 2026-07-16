@@ -1,4 +1,4 @@
-name: Temporary Whisper model fetch
+name: Temporary Whisper base fetch
 
 on:
   pull_request:
@@ -13,24 +13,24 @@ jobs:
   fetch:
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch faster-whisper small model
+      - name: Fetch faster-whisper base model
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p faster-whisper-small
-          base='https://huggingface.co/Systran/faster-whisper-small/resolve/main'
+          mkdir -p faster-whisper-base
+          base='https://huggingface.co/Systran/faster-whisper-base/resolve/main'
           for file in config.json model.bin tokenizer.json vocabulary.txt; do
-            curl --fail --location --retry 5 --retry-all-errors "$base/$file" --output "faster-whisper-small/$file"
+            curl --fail --location --retry 5 --retry-all-errors "$base/$file" --output "faster-whisper-base/$file"
           done
-          test -s faster-whisper-small/model.bin
-          sha256sum faster-whisper-small/model.bin
-          du -sh faster-whisper-small
+          test -s faster-whisper-base/model.bin
+          sha256sum faster-whisper-base/model.bin
+          du -sh faster-whisper-base
 
       - name: Upload model artifact
         uses: actions/upload-artifact@v4
         with:
-          name: faster-whisper-small
-          path: faster-whisper-small
+          name: faster-whisper-base
+          path: faster-whisper-base
           if-no-files-found: error
           compression-level: 0
           retention-days: 1
